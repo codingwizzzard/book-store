@@ -1,0 +1,173 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Book Store | Home Page</title>
+  <!-- Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <!-- Bootstrap CSS -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css">
+  <style>
+    * {
+      font-family: "Poppins", sans-serif;
+    }
+
+    body {
+      background: #f8f8f8;
+    }
+
+    .search-section {
+      padding: 40px 20px;
+      background: linear-gradient(90deg, rgba(212, 198, 206, 1) 0%, rgba(195, 232, 244, 1) 100%);
+      border-radius: 10px;
+      margin-bottom: 40px;
+    }
+
+    .search-section h2 {
+      font-size: 2em;
+      margin-bottom: 20px;
+    }
+
+    .search-section h2 strong {
+      font-weight: bold;
+    }
+
+    .search-bar input {
+      border-radius: 5px;
+      border: 1px solid #ccc;
+      font-size: 1em;
+      padding: 10px;
+    }
+
+    .search-bar button {
+      border-radius: 5px;
+      background: #e151ac;
+      color: white;
+      font-size: 1em;
+      padding: 10px 20px;
+      border: none;
+      cursor: pointer;
+      box-shadow: 0 0 10px #d893ca;
+    }
+
+    .search-bar button:hover {
+      background: #e151ac;
+      color: white;
+    }
+
+    .book-card {
+      background: white;
+      padding: 20px;
+      border-radius: 10px;
+      box-shadow: 0 0px 20px rgba(0, 0, 0, 0.1);
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .book-card img {
+      width: 200px;
+      height: 200px;
+      object-fit: contain;
+      border-radius: 5px;
+      margin-right: 20px;
+    }
+
+    .book-card h3 {
+      font-size: 1.2em;
+      margin-bottom: 10px;
+    }
+
+    .book-card p {
+      color: #666;
+      margin-bottom: 10px;
+    }
+
+    .book-buttons {
+      display: flex;
+      gap: 10px;
+    }
+
+    .book-buttons .details,
+    .book-buttons .buy {
+      padding: 10px 20px;
+      border: none;
+      border-radius: 5px;
+      cursor: pointer;
+    }
+
+    .book-buttons .details {
+      background: #fff;
+      color: #757574;
+      border: 1px solid #cfcfce;
+    }
+
+    .book-buttons .details:hover {
+      background: #fff;
+      color: #757574;
+      border: 1px solid #cfcfce;
+    }
+
+    .book-buttons .buy {
+      background: #e151ac;
+      color: white;
+    }
+
+    .book-buttons .buy:hover {
+      background: #e151ac;
+      color: white;
+    }
+  </style>
+</head>
+
+<body>
+  <!-- Header starts -->
+  <%- include('./partials/header.ejs') %>
+    <!-- Header ends -->
+    <div class="container-fluid">
+      <section class="search-section">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <h2>Find the book <br> <strong>you've been looking for</strong></h2>
+            </div>
+          </div>
+          <div class="row">
+            <div class="col-lg-12">
+              <div class="search-bar d-flex">
+                <input type="text" class="form-control me-2" placeholder="Search by book title">
+                <button class="btn">Search</button>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      <section class="book-section">
+        <div class="container">
+          <div class="row">
+            <% data.map((val)=>{ %>
+            <div class="col-lg-6 mb-4">
+              <div class="book-card d-flex">
+                <img src="<%= val.image %>" alt="image">
+                <div>
+                  <h3 style="color: #7f7f7f;"><%= val.title %></h3>
+                  <p style="color: #b8b8b9;"><%= val.author %></p>
+                  <p style="color: #b8b8b9;"><%= val.publishyear %></p>
+                  <div class="book-buttons">
+                    <a class="details btn btn-secondary" href="/bookDetails/<%= val._id %>">More Details</a>
+                    <button class="buy btn">Buy</button>
+                  </div>
+                </div>
+              </div>
+            </div>
+          <% }) %>
+          </div>
+        </div>
+      </section>
+    </div>
+</body>
+
+</html>
